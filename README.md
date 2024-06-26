@@ -1,0 +1,1 @@
+Welcome to alx-backend-javascript repository! This repository is dedicated to exploring and learning about ES6 features in JavaScript, focusing on modern backend development techniques.
