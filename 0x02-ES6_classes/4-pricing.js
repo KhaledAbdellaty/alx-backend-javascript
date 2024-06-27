@@ -7,7 +7,7 @@ export default class Pricing {
   }
 
   /**
-   * @param {any} amount
+   * @param {Number} amount
    */
   set amount(amount) {
     if (typeof amount !== 'number') {
@@ -18,11 +18,11 @@ export default class Pricing {
   }
 
   get amount() {
-    return this.amount;
+    return this._amount;
   }
 
   /**
-   * @param {any} currency
+   * @param {Currency} currency
    */
   set currency(currency) {
     if (currency instanceof Currency) {
@@ -37,10 +37,20 @@ export default class Pricing {
   }
 
   displayFullPrice() {
-    return `${this._amount} ${this._currency.name} (${this._currency.code})`;
+    return `${this._amount} ${this._currency.displayFullPrice()})`;
   }
 
+  /**
+   * @param {Number} amount
+   * @param {Number} conversionRate
+   */
   static convertPrice(amount, conversionRate) {
+    if (typeof amount !== 'number') {
+      throw new TypeError('amount must be a number');
+    }
+    if (typeof conversionRate !== 'number') {
+      throw new TypeError('conversionRate must be a number');
+    }
     return amount * conversionRate;
   }
 }
