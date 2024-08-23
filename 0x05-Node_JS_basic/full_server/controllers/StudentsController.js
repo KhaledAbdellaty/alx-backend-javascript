@@ -29,7 +29,7 @@ class StudentsController {
       return;
     }
     readDatabase('./database.csv').then((data) => {
-      response.write(`List: ${data[major].join(', ')}\n`);
+      response.write(`List: ${data[major].join(', ')}`);
     }).catch((err) => response.status(500)
       .send(err instanceof Error ? err.message : err.toString()))
       .finally(() => {
