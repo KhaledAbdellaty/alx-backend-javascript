@@ -3,7 +3,7 @@ const fs = require('fs');
 async function countStudents(path) {
   let data;
   try {
-    data = await fs.promises.readFile(path, 'utf8');
+    data = await fs.promises.readFile(path, 'utf-8');
   } catch (error) {
     throw new Error('Cannot load the database');
   }
