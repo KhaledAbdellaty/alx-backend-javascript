@@ -22,7 +22,7 @@ class StudentsController {
     const { major } = request.params;
     if (major !== 'CS' && major !== 'SWE') {
       response.status(500)
-        .send('Major parameter must be CS or SWE\n');
+        .send('Major parameter must be CS or SWE');
       response.end();
       return;
     }

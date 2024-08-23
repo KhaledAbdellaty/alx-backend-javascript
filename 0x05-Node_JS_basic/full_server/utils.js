@@ -24,7 +24,6 @@ async function readDatabase(path) {
   for (const student of students) {
     studentsByField[student.field].push(student.firstName);
   }
-  console.log(studentsByField);
   return studentsByField;
 }
 
