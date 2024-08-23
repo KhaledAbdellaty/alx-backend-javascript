@@ -1,7 +1,6 @@
 const express = require('express');
 
 const app = express();
-const hostname = 'localhost';
 const port = 1245;
 const students = require('./3-read_file_async');
 
@@ -19,7 +18,8 @@ app.get('/students', (req, res) => {
     res.write(`Number of students: ${data.students.length}\n`);
     res.write(`Number of students in CS: ${data.csStudents.length}. List: ${data.csStudents.join(', ')}\n`);
     res.write(`Number of students in SWE: ${data.sweStudents.length}. List: ${data.sweStudents.join(', ')}`);
-  }).catch((err) => res.write(err.message))
+  }).catch((err) => res.status(500)
+    .send(err instanceof Error ? err.message : err.toString()))
     .finally(() => {
       res.end();
     });
