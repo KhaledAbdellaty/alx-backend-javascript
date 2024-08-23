@@ -21,12 +21,12 @@ class StudentsController {
     response.setHeader('Content-Type', 'text/plain');
     const { major } = request.params;
     if (major !== 'CS' && major !== 'SWE') {
-      response.statusCode = 500;
-      response.write('Major parameter must be CS or SWE\n');
+      response.status(500)
+        .send('Major parameter must be CS or SWE\n');
+      return;
     }
     readDatabase('./database.csv').then((data) => {
       response.write(`List: ${data[major].join(', ')}\n`);
-      response.end();
     }).catch((err) => response.status(500)
       .send(err instanceof Error ? err.message : err.toString()))
       .finally(() => {
