@@ -6,11 +6,9 @@ class StudentsController {
     response.setHeader('Content-Type', 'text/plain');
     const dataPath = process.argv.length > 2 ? process.argv[2] : '';
     readDatabase(dataPath).then((data) => {
-      let formatedList = data.CS.map((item) => item.trim()).join(', ');
       response.write('This is the list of our students\n');
-      response.write(`Number of students in CS: ${data.CS.length}. List: ${formatedList}\n`);
-      formatedList = data.SWE.map((item) => item.trim()).join(', ');
-      response.write(`Number of students in SWE: ${data.SWE.length}. List: ${formatedList}`);
+      response.write(`Number of students in CS: ${data.CS.length}. List: ${data.CS.join(', ')}\n`);
+      response.write(`Number of students in SWE: ${data.SWE.length}. List: ${data.SWE.join(', ')}`);
     }).catch((err) => response.status(500)
       .send(err instanceof Error ? err.message : err.toString()))
       .finally(() => {
